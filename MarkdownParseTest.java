@@ -41,8 +41,6 @@ public class MarkdownParseTest {
         Path fileName = Path.of("test-file4.md");
         String contents = Files.readString(fileName);
         ArrayList<String> expected = new ArrayList<>();
-        expected.add("one.html");
-        expected.add("[](two.html");
         assertEquals(expected,MarkdownParse.getLinks(contents));
     }
 }

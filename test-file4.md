@@ -1,5 +1,1 @@
-[](one.html)
-
-[]([](two.html)
-
-[])
+![](first_image.html)
