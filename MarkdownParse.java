@@ -42,8 +42,9 @@ public class MarkdownParse {
             if(closeParen == -1) {
                 break;
             }
-            if(!exited) {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            String thePotentialLink = markdown.substring(openParen + 1, closeParen);
+            if(!exited && !thePotentialLink.contains("\n")) {
+                toReturn.add(thePotentialLink);
             }
             currentIndex = closeParen + 1;
         }
