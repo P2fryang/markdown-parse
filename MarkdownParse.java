@@ -5,6 +5,22 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class MarkdownParse {
+
+    // Loop with a stack until finding the corresponding closeParen
+    static int findCloseParen(String markdown, int openParen) {
+        int closeParen = openParen + 1;
+        int openParenCount = 1;
+        while (openParenCount > 0) {
+            if (markdown.charAt(closeParen) == '(') {
+                openParenCount++;
+            } else if (markdown.charAt(closeParen) == ')') {
+                openParenCount--;
+            }
+            closeParen++;
+        }
+        return closeParen - 1;
+
+    }
     public static ArrayList<String> getLinks(String markdown) {
         System.out.println(markdown.length());
         //System.out.println(mark)
@@ -15,6 +31,7 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             System.out.println("Start while!");
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
+<<<<<<< HEAD
             if(nextOpenBracket == -1) {
                 break;
             }
@@ -23,6 +40,9 @@ public class MarkdownParse {
                 System.out.println("Continue at image");
                 continue;
             }
+=======
+            // System.out.format("%d\t%d\t%s\n", currentIndex, nextOpenBracket, toReturn);
+>>>>>>> 721910f20c76de8f7b2146d0b67ad93df38cb081
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             if(nextCloseBracket == -1) {
                 break;
@@ -33,6 +53,7 @@ public class MarkdownParse {
                 continue;
             }
             int openParen = markdown.indexOf("(", nextCloseBracket);
+<<<<<<< HEAD
             if(openParen == -1) {
                 break;
             }
@@ -79,6 +100,24 @@ public class MarkdownParse {
                 toReturn.add(thePotentialLink);
             }
             currentIndex = closeParen + 1;
+=======
+
+            // The close paren we need may not be the next one in the file
+            int closeParen = findCloseParen(markdown, openParen);
+            
+            if(nextOpenBracket == -1 || nextCloseBracket == -1
+                  || closeParen == -1 || openParen == -1) {
+                return toReturn;
+            }
+            String potentialLink = markdown.substring(openParen + 1, closeParen).trim();
+            if(potentialLink.indexOf(" ") == -1 && potentialLink.indexOf("\n") == -1) {
+                toReturn.add(potentialLink);
+                currentIndex = closeParen + 1;
+            }
+            else {
+                currentIndex = currentIndex + 1;
+            }
+>>>>>>> 721910f20c76de8f7b2146d0b67ad93df38cb081
         }
         return toReturn;
     }

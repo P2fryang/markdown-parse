@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 java -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. MarkdownParse $1
+=======
+#!/bin/bash
+
+java -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. MarkdownParse $1
+>>>>>>> 721910f20c76de8f7b2146d0b67ad93df38cb081
