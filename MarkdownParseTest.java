@@ -91,5 +91,12 @@ public class MarkdownParseTest {
         List<String> expect = List.of("https://something.com", "some-page.html");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
+
+    @Test
+    public void testFile13() throws IOException {
+	String contents= "[](new-test-link.com)";
+	List<String> expect = List.of("new-test-link.com");
+	assertEquals(expect, MarkdownParse.getLinks(contents));
+    }
     
 }
